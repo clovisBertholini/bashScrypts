@@ -26,9 +26,11 @@ then
 		exit 1
         else
 		brightness=$[$brightness * $tax / 100]
-		sudo echo $brightness | cat > /sys/class/backlight/intel_backlight/brightness
+		sudo chmod 666 /sys/class/backlight/intel_backlight/brightness
+		echo $brightness | cat > /sys/class/backlight/intel_backlight/brightness
+		sudo chmod 644 /sys/class/backlight/intel_backlight/brightness
 		echo -e "Brightness seted up to \c"
-		cat > /sys/class/backlight/intel_backlight/brightness
+		cat /sys/class/backlight/intel_backlight/brightness
 		echo "Brightness changed with success!"
 		exit 0
 	fi
